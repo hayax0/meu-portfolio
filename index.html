@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Caio Campos - Portfólio</title>
+</head>
+
+<body>
+    <div class="particles"></div>
+    <nav class="navegacao">
+        <ul class="menu">
+            <li><a href="#inicio" class="menu-link">Início</a></li>
+            <li><a href="#sobre" class="menu-link">Sobre</a></li>
+            <li><a href="#projetos" class="menu-link">Projetos</a></li>
+            <li><a href="#contatos" class="menu-link">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main id="inicio" class="cabecalho">
+        <div class="perfil-container">
+            <div class="foto-container">
+                <img src="./img/fotodeperfil.jpg" alt="Foto de Caio Campos" class="foto-perfil">
+            </div>
+            <h1 class="nome">Caio Campos</h1>
+            <p class="profissao">Web Developer</p>
+        </div>
+    </main>
+
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="sobre-content">
+                <p class="sobre-paragrafo">
+                    Desenvolvedor web Fullstack apaixonado por tecnologia, design de interfaces e segurança digital.
+                    Transformo conceitos em código para criar experiências digitais memoráveis, com foco em
+                    usabilidade, performance e boas práticas de desenvolvimento.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>Frontend</h3>
+                        <p>HTML, CSS, JavaScript, React, Typescript</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Backend</h3>
+                        <p>Node.js, Python, SQL</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Ferramentas</h3>
+                        <p>Git, Visual Studio Code</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="projetos">
+        <div class="container">
+            <h2 class="section-title">Projetos</h2>
+            <div class="projetos-grid">
+                <div class="projeto-card">
+                    <div class="projeto-image">
+                        <div class="placeholder-image">Em breve</div>
+                    </div>
+                    <div class="projeto-content">
+                        <h3 class="projeto-titulo">Projeto 1</h3>
+                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                    </div>
+                </div>
+                <div class="projeto-card">
+                    <div class="projeto-image">
+                        <div class="placeholder-image">Em breve</div>
+                    </div>
+                    <div class="projeto-content">
+                        <h3 class="projeto-titulo">Projeto 2</h3>
+                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                    </div>
+                </div>
+                <div class="projeto-card">
+                    <div class="projeto-image">
+                        <div class="placeholder-image">Em breve</div>
+                    </div>
+                    <div class="projeto-content">
+                        <h3 class="projeto-titulo">Projeto 3</h3>
+                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatos" class="contatos">
+        <div class="container">
+            <h2 class="section-title">Contatos</h2>
+            <div class="contatos-content">
+                <div class="contato-info">
+                    <h3>Vamos conversar?</h3>
+                    <p>Entre em contato comigo através do formulário ou pelas redes sociais.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/caio-ds-campos/" target="_blank" class="social-link">LinkedIn</a>
+                        <a href="https://github.com/hayax0" target="_blank" class="social-link">GitHub</a>
+                        <a href="mailto:caioCampos1009@gmail.com" class="social-link">Email</a>
+                    </div>
+                </div>
+                <form class="formulario-contato" id="formulario">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" class="form-input" required id="nome" name="nome">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu email" class="form-input" required id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua mensagem" id="mensagem" class="form-textarea" rows="5" required name="mensagem"></textarea>
+                    </div>
+                    <button type="submit" class="form-button">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <script>
+        (function () {
+            
+            emailjs.init("n6zG8bamERRpxx5HJ");
+        })();
+
+        document.getElementById('formulario').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm("service_uoa5l6h", "template_opssd5h", this)
+                .then(function () {
+                    alert("Mensagem enviada com sucesso!");
+                    document.getElementById('formulario').reset(); 
+                }, function (error) {
+                    alert("Erro ao enviar: " + JSON.stringify(error));
+                });
+        });
+    </script>
+
+</body>
+
+</html>
