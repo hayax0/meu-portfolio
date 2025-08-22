@@ -136,7 +136,7 @@ body {
 
 .profissao {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   font-weight: 300;
 }
@@ -212,12 +212,32 @@ section {
   margin-bottom: 3rem;
   line-height: 1.8;
 }
-
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  justify-content: center; /* Centraliza os itens na horizontal */
+  gap: 2rem; /* Espaço entre os cards */
   margin-top: 3rem;
+}
+
+.skill-item {
+  /* Define a largura para que caibam 2 por linha, considerando o 'gap' */
+  flex-basis: calc(50% - 1rem);
+  min-width: 250px; /* Garante um tamanho mínimo em telas menores */
+  
+  /* Seus outros estilos continuam aqui */
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Importante para o cálculo da largura funcionar bem */
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
 }
 
 .skill-item {

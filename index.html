@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="assets/styles/styles.css">
+
     <title>Caio Campos - Portfólio</title>
 </head>
 
@@ -22,7 +24,7 @@
     <main id="inicio" class="cabecalho">
         <div class="perfil-container">
             <div class="foto-container">
-                <img src="./img/fotodeperfil.jpg" alt="Foto de Caio Campos" class="foto-perfil">
+                <img src="assets/img/fotodeperfil.jpg" alt="Foto de Caio Campos" class="foto-perfil">
             </div>
             <h1 class="nome">Caio Campos</h1>
             <p class="profissao">Web Developer</p>
@@ -60,35 +62,38 @@
         <div class="container">
             <h2 class="section-title">Projetos</h2>
             <div class="projetos-grid">
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
+                <div class="projetos-grid">
+                    <div class="projeto-card">
+                        <div class="projeto-image">
+                            <img src="assets/img/plataformavip.png" alt="Imagem do Projeto Plataforma VIP"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="projeto-content">
+                            <h3 class="projeto-titulo">Plataforma de Servidores</h3>
+                            <p class="projeto-descricao"> A plataforma permite que cada servidor crie sua própria loja sob medida, onde os jogadores conseguem adquirir, pacotes VIP e outras vantagens diretamente por lá.
+</p>
+                        </div>
                     </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 1</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                    <div class="projeto-card">
+                        <div class="projeto-image">
+                            <div class="placeholder-image">Em breve</div>
+                        </div>
+                        <div class="projeto-content">
+                            <h3 class="projeto-titulo">Projeto 2</h3>
+                            <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                        </div>
                     </div>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
-                    </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 2</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
-                    </div>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
-                    </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 3</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                    <div class="projeto-card">
+                        <div class="projeto-image">
+                            <div class="placeholder-image">Em breve</div>
+                        </div>
+                        <div class="projeto-content">
+                            <h3 class="projeto-titulo">Projeto 3</h3>
+                            <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section id="contatos" class="contatos">
@@ -99,7 +104,8 @@
                     <h3>Vamos conversar?</h3>
                     <p>Entre em contato comigo através do formulário ou pelas redes sociais.</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/caio-ds-campos/" target="_blank" class="social-link">LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/caio-ds-campos/" target="_blank"
+                            class="social-link">LinkedIn</a>
                         <a href="https://github.com/hayax0" target="_blank" class="social-link">GitHub</a>
                         <a href="mailto:caioCampos1009@gmail.com" class="social-link">Email</a>
                     </div>
@@ -112,7 +118,8 @@
                         <input type="email" placeholder="Seu email" class="form-input" required id="email" name="email">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Sua mensagem" id="mensagem" class="form-textarea" rows="5" required name="mensagem"></textarea>
+                        <textarea placeholder="Sua mensagem" id="mensagem" class="form-textarea" rows="5" required
+                            name="mensagem"></textarea>
                     </div>
                     <button type="submit" class="form-button">Enviar Mensagem</button>
                 </form>
@@ -123,7 +130,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script>
         (function () {
-            
+
             emailjs.init("n6zG8bamERRpxx5HJ");
         })();
 
@@ -133,7 +140,7 @@
             emailjs.sendForm("service_uoa5l6h", "template_opssd5h", this)
                 .then(function () {
                     alert("Mensagem enviada com sucesso!");
-                    document.getElementById('formulario').reset(); 
+                    document.getElementById('formulario').reset();
                 }, function (error) {
                     alert("Erro ao enviar: " + JSON.stringify(error));
                 });
