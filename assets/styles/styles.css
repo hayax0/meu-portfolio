@@ -365,6 +365,14 @@ section.visible {
   border-color: rgba(59, 130, 246, 0.4);
 }
 
+
+
+.projeto-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; 
+}
+
 .projeto-image {
   height: 240px;
   background: var(--bg-primary);
