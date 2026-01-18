@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-caio-campos",
+  "version": "1.0.0",
+  "description": "Portfólio profissional de Caio Campos - Desenvolvedor Fullstack & Designer UI/UX",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/output.css --watch",
+    "build": "npx tailwindcss -i ./assets/css/style.css -o ./assets/css/output.css --minify",
+    "serve": "npx serve .",
+    "dev-server": "npm run dev & npx serve ."
+  },
+  "keywords": [
+    "portfolio",
+    "web-developer",
+    "fullstack",
+    "ui-ux",
+    "tailwindcss",
+    "react",
+    "nodejs"
+  ],
+  "author": "Caio Campos",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18"
+  }
+}

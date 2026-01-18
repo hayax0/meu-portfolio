@@ -1,149 +1,477 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles/styles.css">
-    <title>Caio Campos - Portfólio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caio Campos - Portfólio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    @keyframes floating {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    }
+
+    .menu-link::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+
+    .menu-link:hover::after,
+    .menu-link.active::after {
+      width: 80%;
+    }
+
+    .social-link::before {
+      content: '→';
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-right: -0.5rem;
+    }
+
+    .social-link:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+      margin-right: 0.5rem;
+    }
+
+    .form-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .form-button:hover::before {
+      left: 100%;
+    }
+
+    .skill-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      transform: scaleX(0);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .skill-item:hover::before {
+      transform: scaleX(1);
+    }
+  </style>
 </head>
 
-<body>
-    <div class="scroll-progress"></div>
-    <div class="particles"></div>
+<body class="bg-[#0a0a0a] text-white overflow-x-hidden">
 
-    <nav class="navegacao" id="nav">
-        <ul class="menu">
-            <li><a href="#inicio" class="menu-link" data-section="inicio">Início</a></li>
-            <li><a href="#sobre" class="menu-link" data-section="sobre">Sobre</a></li>
-            <li><a href="#projetos" class="menu-link" data-section="projetos">Projetos</a></li>
-            <li><a href="#contatos" class="menu-link" data-section="contatos">Contatos</a></li>
-        </ul>
-    </nav>
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress" class="fixed top-0 left-0 h-0.5 gradient-bg z-[1001] transition-all duration-300 ease-out">
+  </div>
 
-    <main id="inicio" class="cabecalho">
-        <div class="perfil-container">
-            <div class="foto-container">
-                <img src="assets/img/fotodeperfil.jpg" alt="Foto de Caio Campos" class="foto-perfil">
-            </div>
-            <h1 class="nome">Caio Campos</h1>
-            <p class="profissao">Web Developer</p>
+  <!-- Background Particles -->
+  <div class="fixed top-0 left-0 w-full h-full -z-10 opacity-30"
+    style="background: radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.04) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.04) 0%, transparent 40%);">
+  </div>
+
+  <!-- Navegação -->
+  <nav id="navegacao"
+    class="fixed top-0 left-0 right-0 bg-[#0a0a0a]/85 backdrop-blur-[30px] border-b border-white/[0.08] z-[1000] py-6 transition-all duration-300">
+    <ul
+      class="flex justify-center list-none gap-16 max-w-[1200px] mx-auto px-12 max-[768px]:gap-8 max-[480px]:gap-4 max-[480px]:flex-wrap max-[480px]:justify-center">
+      <li>
+        <a href="#inicio"
+          class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] tracking-wide hover:text-white hover:bg-white/5 hover:-translate-y-0.5 max-[480px]:px-4 max-[480px]:py-2 max-[480px]:text-[0.9rem]"
+          data-section="inicio">Início</a>
+      </li>
+      <li>
+        <a href="#sobre"
+          class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] tracking-wide hover:text-white hover:bg-white/5 hover:-translate-y-0.5 max-[480px]:px-4 max-[480px]:py-2 max-[480px]:text-[0.9rem]"
+          data-section="sobre">Sobre</a>
+      </li>
+      <li>
+        <a href="#projetos"
+          class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] tracking-wide hover:text-white hover:bg-white/5 hover:-translate-y-0.5 max-[480px]:px-4 max-[480px]:py-2 max-[480px]:text-[0.9rem]"
+          data-section="projetos">Projetos</a>
+      </li>
+      <li>
+        <a href="#contatos"
+          class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] tracking-wide hover:text-white hover:bg-white/5 hover:-translate-y-0.5 max-[480px]:px-4 max-[480px]:py-2 max-[480px]:text-[0.9rem]"
+          data-section="contatos">Contatos</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Cabeçalho / Hero -->
+  <main id="inicio" class="min-h-screen flex items-center justify-center p-12 relative max-[768px]:p-8"
+    style="background: radial-gradient(ellipse at center top, rgba(14, 165, 233, 0.1) 0%, transparent 70%), #0a0a0a;">
+    <div class="text-center fade-in-up max-w-[800px]">
+      <div class="mb-12 relative inline-block">
+        <img src="assets/img/foto de perfil.jpg.jpeg" alt="Foto de Caio Campos"
+          class="w-[220px] h-[220px] rounded-full object-cover border-[3px] border-sky-500/30 shadow-[0_20px_60px_rgba(14,165,233,0.2)] floating transition-all duration-[0.6s] hover:scale-105 hover:rotate-2 hover:shadow-[0_30px_80px_rgba(14,165,233,0.3)] max-[768px]:w-[180px] max-[768px]:h-[180px]">
+      </div>
+      <h1
+        class="text-6xl font-bold mb-6 gradient-text tracking-tight leading-tight cursor-default max-[768px]:text-5xl max-[480px]:text-4xl">
+        Caio Campos</h1>
+      <p class="text-2xl text-[#a1a1a1] mb-8 font-light tracking-wider">Web Developer / Designer UI/UX</p>
+    </div>
+  </main>
+
+  <!-- Seção Sobre -->
+  <section id="sobre" class="py-32 opacity-0 translate-y-8 transition-all duration-[0.8s] max-[768px]:py-24">
+    <div class="max-w-[1200px] mx-auto px-12 max-[768px]:px-8 max-[480px]:px-6">
+      <h2
+        class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm max-[768px]:text-4xl max-[480px]:text-3xl">
+        Sobre Mim</h2>
+
+      <div class="max-w-[900px] mx-auto text-center">
+        <p class="text-[1.3rem] text-[#a1a1a1] mb-16 leading-[1.8] font-light">
+          Desenvolvedor web Fullstack apaixonado por tecnologia, design de interfaces e segurança digital. Transformo
+          conceitos em código para criar experiências digitais memoráveis, com foco em usabilidade, performance e boas
+          práticas de desenvolvimento.
+        </p>
+
+        <div class="grid grid-cols-2 gap-10 mt-16 max-[768px]:grid-cols-1 max-[768px]:gap-8">
+          <!-- Hard Skills: Frontend & Core -->
+          <div
+            class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] overflow-hidden backdrop-blur-[10px] hover:-translate-y-2 hover:border-sky-500/30 hover:shadow-[0_20px_60px_rgba(14,165,233,0.15)] hover:bg-white/5 text-left">
+            <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold flex items-center gap-3">
+              <span class="text-2xl"></span> Hard Skills: Core
+            </h3>
+            <ul class="text-[#a1a1a1] space-y-3 font-light list-none">
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> React / ReactJS</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> TypeScript & JavaScript
+                (ES6+)</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Next.js / Node.js /
+                Express</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> HTML5, CSS3, Tailwind CSS
+              </li>
+            </ul>
+          </div>
+
+          <!-- Hard Skills: Backend & Architecture -->
+          <div
+            class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] overflow-hidden backdrop-blur-[10px] hover:-translate-y-2 hover:border-sky-500/30 hover:shadow-[0_20px_60px_rgba(14,165,233,0.15)] hover:bg-white/5 text-left">
+            <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold flex items-center gap-3">
+              <span class="text-2xl"></span> Hard Skills: Arquitetura
+            </h3>
+            <ul class="text-[#a1a1a1] space-y-3 font-light list-none">
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> APIs REST & Integrações
+              </li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> SQL (MySQL, Postgres, SQL
+                Server)</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Testes (Jest, Testing
+                Library)</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Git, Clean Code & SOLID
+              </li>
+            </ul>
+          </div>
+
+          <!-- Soft Skills: People -->
+          <div
+            class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] overflow-hidden backdrop-blur-[10px] hover:-translate-y-2 hover:border-sky-500/30 hover:shadow-[0_20px_60px_rgba(14,165,233,0.15)] hover:bg-white/5 text-left">
+            <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold flex items-center gap-3">
+              <span class="text-2xl"></span> Soft Skills: Com Pessoas
+            </h3>
+            <ul class="text-[#a1a1a1] space-y-3 font-light list-none">
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Comunicação Eficaz (PT/EN)
+              </li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Trabalho em Equipe</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Colaboração Ativa</li>
+            </ul>
+          </div>
+
+          <!-- Soft Skills: Mindset -->
+          <div
+            class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] overflow-hidden backdrop-blur-[10px] hover:-translate-y-2 hover:border-sky-500/30 hover:shadow-[0_20px_60px_rgba(14,165,233,0.15)] hover:bg-white/5 text-left">
+            <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold flex items-center gap-3">
+              <span class="text-2xl"></span> Soft Skills: Mindset
+            </h3>
+            <ul class="text-[#a1a1a1] space-y-3 font-light list-none">
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Proatividade & Vontade de
+                Aprender</li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Adaptabilidade & Resolução
+              </li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 mt-1">▹</span> Orientação para Resultados
+              </li>
+            </ul>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <section id="sobre" class="sobre">
-        <div class="container">
-            <h2 class="section-title">Sobre Mim</h2>
-            <div class="sobre-content">
-                <p class="sobre-paragrafo">
-                    Desenvolvedor web Fullstack apaixonado por tecnologia, design de interfaces e segurança digital.
-                    Transformo conceitos em código para criar experiências digitais memoráveis, com foco em
-                    usabilidade, performance e boas práticas de desenvolvimento.
+  <!-- Seção Projetos -->
+  <!-- Seção Projetos -->
+  <section id="projetos"
+    class="py-32 bg-[#111111] opacity-0 translate-y-8 transition-all duration-[0.8s] max-[768px]:py-24">
+    <div class="max-w-[1200px] mx-auto px-12 max-[768px]:px-8 max-[480px]:px-6">
+      <h2
+        class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm max-[768px]:text-4xl max-[480px]:text-3xl">
+        Projetos</h2>
+
+      <div class="flex justify-center w-full">
+        <a href="https://stocks-app-topaz.vercel.app/sign-in" target="_blank"
+          class="block w-full max-w-[900px] bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.08] transition-all duration-[0.6s] relative hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(14,165,233,0.15)] hover:border-sky-500/40 group">
+          <div class="h-auto aspect-video bg-[#0a0a0a] relative overflow-hidden">
+            <img src="assets/img/print%20projeto%201.jpg" alt="Signalist Project"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="p-10 max-[768px]:p-6">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+              <div>
+                <h3 class="text-3xl font-semibold text-sky-500 mb-2">Signalist</h3>
+                <p class="text-[#a1a1a1] leading-[1.7] font-light text-lg">
+                  Aplicação Full Stack de análise de investimentos com IA.
                 </p>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <h3>Frontend</h3>
-                        <p>HTML, CSS, JavaScript, React, Typescript</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Backend</h3>
-                        <p>Node.js, Python, SQL</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Ferramentas</h3>
-                        <p>Git, Visual Studio Code</p>
-                    </div>
-                </div>
+              </div>
+              <div
+                class="flex items-center gap-2 text-sky-500 font-medium whitespace-nowrap bg-white/5 px-4 py-2 rounded-full border border-white/10 group-hover:bg-sky-500/10 transition-colors">
+                Acessar Projeto <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <section id="projetos" class="projetos">
-        <div class="container">
-            <h2 class="section-title">Projetos</h2>
-            <div class="projetos-grid">
-                <a href="https://github.com/mxtheusfer/redmc" target="_blank" class="projeto-card-link">
-                    <div class="projeto-card">
-                        <div class="projeto-image">
-                            <img src="assets/img/plataformavip.png" alt="Imagem do Projeto Plataforma VIP"
-                                style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="projeto-content">
-                            <h3 class="projeto-titulo">Plataforma de Servidores</h3>
-                            <p class="projeto-descricao"> Sistema para montar lojas virtuais focadas em servidores de
-                                jogos, começando no universo do Minecraft e a ideia é adicionar suporte para outros jogos no futuro! </p>
-                        </div>
-                    </div>
-                </a>
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
-                    </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 2</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
-                    </div>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
-                    </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 3</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
-                    </div>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-image">
-                        <div class="placeholder-image">Em breve</div>
-                    </div>
-                    <div class="projeto-content">
-                        <h3 class="projeto-titulo">Projeto 4</h3>
-                        <p class="projeto-descricao">Descrição do projeto em desenvolvimento...</p>
-                    </div>
-                </div>
+            <div class="text-[#a1a1a1] leading-[1.7] font-light mb-8 text-lg">
+              O objetivo do projeto foi criar uma experiência de onboarding personalizada, onde o sistema analisa o
+              perfil do usuário e gera relatórios exclusivos automaticamente. Combina dados de mercado em tempo real com
+              Inteligência Artificial Generativa.
             </div>
-        </div>
-    </section>
 
-    <section id="contatos" class="contatos">
-        <div class="container">
-            <h2 class="section-title">Contatos</h2>
-            <div class="contatos-content">
-                <div class="contato-info">
-                    <h3>Vamos conversar?</h3>
-                    <p>Entre em contato comigo através do formulário ou pelas redes sociais.</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/caio-ds-campos/" target="_blank"
-                            class="social-link">LinkedIn</a>
-                        <a href="https://github.com/hayax0" target="_blank" class="social-link">GitHub</a>
-                        <a href="https://www.instagram.com/dscaio021_/" target="_blank"
-                            class="social-link">Instagram</a>
-                        <a href="https://wa.me/5521997411009?text=Ol%C3%A1%20Caio%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20oportunidades%20de%20desenvolvimento%20web.%20Voc%C3%AA%20tem%20disponibilidade%20para%20um%20projeto%3F"
-                            target="_blank" class="social-link whatsapp-link">WhatsApp</a>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-8 text-[0.95rem] text-[#a1a1a1] font-light">
+              <div class="bg-white/[0.03] p-6 rounded-xl border border-white/[0.05]">
+                <strong class="text-sky-400 block mb-4 text-base uppercase tracking-wider">Desafios & Soluções</strong>
+                <ul class="space-y-3">
+                  <li class="flex items-start gap-2"><span class="text-white mt-1">•</span> <span><strong
+                        class="text-white">Event-Driven:</strong> Inngest para processamento assíncrono e filas,
+                      evitando lentidão na interface.</span></li>
+                  <li class="flex items-start gap-2"><span class="text-white mt-1">•</span> <span><strong
+                        class="text-white">AI Contextual:</strong> Google Gemini para processar dados e gerar e-mails
+                      contextuais.</span></li>
+                  <li class="flex items-start gap-2"><span class="text-white mt-1">•</span> <span><strong
+                        class="text-white">Segurança:</strong> Better-Auth com Cookies Seguros (__Secure) e Middleware
+                      no Next.js.</span></li>
+                </ul>
+              </div>
+
+              <div class="bg-white/[0.03] p-6 rounded-xl border border-white/[0.05]">
+                <strong class="text-sky-400 block mb-4 text-base uppercase tracking-wider">Tech Stack</strong>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Next.js 14</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">TypeScript</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Tailwind CSS</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Shadcn UI</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">MongoDB</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Server Actions</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Vercel</span>
+                  <span class="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Inngest</span>
                 </div>
-                <form class="formulario-contato" id="formulario">
-                    <div class="form-group">
-                        <input type="text" placeholder="Seu nome" class="form-input" required id="nome" name="nome">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Seu email" class="form-input" required id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Sua mensagem" id="mensagem" class="form-textarea" rows="5" required
-                            name="mensagem"></textarea>
-                    </div>
-                    <button type="submit" class="form-button">Enviar Mensagem</button>
-                </form>
+                <div class="mt-6">
+                  <strong class="text-white block mb-2">Decisão de Engenharia:</strong>
+                  <p class="text-sm">O desenvolvimento priorizou a arquitetura Desktop-First, focando na complexidade do
+                    backend e visualização de dados.</p>
+                </div>
+              </div>
             </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Contatos -->
+  <section id="contatos" class="py-32 opacity-0 translate-y-8 transition-all duration-[0.8s] max-[768px]:py-24">
+    <div class="max-w-[1200px] mx-auto px-12 max-[768px]:px-8 max-[480px]:px-6">
+      <h2
+        class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm max-[768px]:text-4xl max-[480px]:text-3xl">
+        Contatos</h2>
+
+      <div class="grid grid-cols-2 gap-20 items-start max-[768px]:grid-cols-1 max-[768px]:gap-12">
+        <div>
+          <h3 class="text-3xl mb-6 font-semibold">Vamos conversar?</h3>
+          <p class="text-[#a1a1a1] mb-12 leading-[1.7] font-light">Entre em contato comigo através do formulário ou
+            pelas redes sociais.</p>
+
+          <div class="grid gap-6">
+            <a href="https://www.linkedin.com/in/caio-ds-campos/" target="_blank"
+              class="social-link text-sky-500 no-underline font-medium transition-all duration-[0.4s] py-4 border-b border-transparent flex items-center gap-2 hover:text-sky-400 hover:translate-x-2 hover:border-white/[0.08]">LinkedIn</a>
+            <a href="https://github.com/hayax0" target="_blank"
+              class="social-link text-sky-500 no-underline font-medium transition-all duration-[0.4s] py-4 border-b border-transparent flex items-center gap-2 hover:text-sky-400 hover:translate-x-2 hover:border-white/[0.08]">GitHub</a>
+            <a href="https://www.instagram.com/dscaio021_/" target="_blank"
+              class="social-link text-sky-500 no-underline font-medium transition-all duration-[0.4s] py-4 border-b border-transparent flex items-center gap-2 hover:text-sky-400 hover:translate-x-2 hover:border-white/[0.08]">Instagram</a>
+            <a href="https://wa.me/5521997411009?text=Ol%C3%A1%20Caio%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20oportunidades%20de%20desenvolvimento%20web.%20Voc%C3%AA%20tem%20disponibilidade%20para%20um%20projeto%3F"
+              target="_blank"
+              class="social-link text-sky-500 no-underline font-medium transition-all duration-[0.4s] py-4 border-b border-transparent flex items-center gap-2 hover:text-sky-400 hover:translate-x-2 hover:border-white/[0.08]">WhatsApp</a>
+          </div>
         </div>
-    </section>
+
+        <form class="flex flex-col gap-8" id="formulario">
+          <div class="relative">
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required
+              class="w-full bg-white/[0.02] border border-white/[0.08] text-white p-6 rounded-2xl text-base transition-all duration-[0.4s] font-light backdrop-blur-[10px] focus:outline-none focus:border-sky-500 focus:shadow-[0_0_0_3px_rgba(14,165,233,0.1)] focus:bg-white/5 focus:-translate-y-0.5">
+          </div>
+
+          <div class="relative">
+            <input type="email" id="email" name="email" placeholder="Seu email" required
+              class="w-full bg-white/[0.02] border border-white/[0.08] text-white p-6 rounded-2xl text-base transition-all duration-[0.4s] font-light backdrop-blur-[10px] focus:outline-none focus:border-sky-500 focus:shadow-[0_0_0_3px_rgba(14,165,233,0.1)] focus:bg-white/5 focus:-translate-y-0.5">
+          </div>
+
+          <div class="relative">
+            <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" rows="5" required
+              class="w-full bg-white/[0.02] border border-white/[0.08] text-white p-6 rounded-2xl text-base transition-all duration-[0.4s] font-light backdrop-blur-[10px] resize-y min-h-[150px] focus:outline-none focus:border-sky-500 focus:shadow-[0_0_0_3px_rgba(14,165,233,0.1)] focus:bg-white/5 focus:-translate-y-0.5"></textarea>
+          </div>
+
+          <button type="submit"
+            class="form-button gradient-bg text-white border-none py-6 px-12 rounded-2xl text-base font-semibold cursor-pointer transition-all duration-[0.4s] relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(14,165,233,0.4)]">
+            Enviar Mensagem
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  <script>
+
+    emailjs.init("n6zG8bamERRpxx5HJ");
 
 
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+
+    const nav = document.getElementById('navegacao');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('py-4');
+        nav.classList.remove('py-6');
+        nav.style.background = 'rgba(10, 10, 10, 0.95)';
+      } else {
+        nav.classList.add('py-6');
+        nav.classList.remove('py-4');
+        nav.style.background = 'rgba(10, 10, 10, 0.85)';
+      }
+    });
+
+
+    const sections = document.querySelectorAll('section, main');
+    const navLinks = document.querySelectorAll('.menu-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active', 'text-sky-500');
+        if (link.getAttribute('data-section') === current) {
+          link.classList.add('active', 'text-sky-500');
+        }
+      });
+    });
+
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      if (section.tagName === 'SECTION') {
+        observer.observe(section);
+      }
+    });
+
+
+    const form = document.getElementById('formulario');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+
+      emailjs.sendForm('service_uoa5l6h', 'template_opssd5h', this)
+        .then(function () {
+          alert('✅ Mensagem enviada com sucesso!');
+          form.reset();
+        }, function (error) {
+          alert('❌ Erro ao enviar mensagem. Tente novamente.');
+          console.log('FAILED...', error);
+        });
+    });
+  </script>
 </body>
 
 </html>
