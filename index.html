@@ -5,222 +5,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Caio Campos - Portfólio</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/output.css" />
   </head>
 
-  <body class="bg-[#0a0a0a] text-white overflow-x-hidden">
+  <body
+    class="bg-[#050505] text-white overflow-x-hidden font-['Inter',sans-serif] selection:bg-white selection:text-black"
+  >
+    <!-- Barra de progresso para o JS -->
     <div
       id="scrollProgress"
-      class="fixed top-0 left-0 h-0.5 gradient-bg z-[1001] transition-all duration-300 ease-out"
+      class="fixed top-0 left-0 h-1 bg-white z-[1001] transition-all duration-100 ease-out"
     ></div>
 
-    <div
-      class="fixed top-0 left-0 w-full h-full -z-10 opacity-30"
-      style="
-        background:
-          radial-gradient(
-            circle at 20% 30%,
-            rgba(14, 165, 233, 0.04) 0%,
-            transparent 40%
-          ),
-          radial-gradient(
-            circle at 80% 70%,
-            rgba(56, 189, 248, 0.04) 0%,
-            transparent 40%
-          );
-      "
-    ></div>
-
+    <!-- Navegação -->
     <nav
       id="navegacao"
-      class="fixed top-0 left-0 right-0 bg-[#0a0a0a]/85 backdrop-blur-[30px] border-b border-white/[0.08] z-[1000] py-6 transition-all duration-300"
+      class="fixed top-0 left-0 right-0 bg-[#050505] border-b border-white/20 z-[1000] py-4"
     >
-      <ul
-        class="flex justify-center list-none gap-16 max-w-[1200px] mx-auto px-12 max-[768px]:gap-8 max-[480px]:gap-4 max-[480px]:flex-wrap"
+      <div
+        class="flex justify-between items-center max-w-[1400px] mx-auto px-6 font-mono text-[10px] md:text-xs uppercase tracking-widest"
       >
+        <div class="font-black text-white md:text-white/50">
+          CAIO_CAMPOS_PORTFOLIO
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex list-none gap-8 items-center">
+          <li>
+            <a
+              href="#inicio"
+              class="menu-link hover:text-black hover:bg-white transition-colors px-2 py-1"
+              data-section="inicio"
+              data-i18n="nav-inicio"
+              >Início</a
+            >
+          </li>
+          <li>
+            <a
+              href="#sobre"
+              class="menu-link hover:text-black hover:bg-white transition-colors px-2 py-1"
+              data-section="sobre"
+              data-i18n="nav-sobre"
+              >Sobre</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projetos"
+              class="menu-link hover:text-black hover:bg-white transition-colors px-2 py-1"
+              data-section="projetos"
+              data-i18n="nav-projetos"
+              >Projetos</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contatos"
+              class="menu-link hover:text-black hover:bg-white transition-colors px-2 py-1"
+              data-section="contatos"
+              data-i18n="nav-contatos"
+              >Contatos</a
+            >
+          </li>
+          <li>
+            <button id="lang-toggle-desktop" class="font-mono tracking-widest text-[10px] md:text-xs uppercase hover:italic transition-all border border-white/20 px-3 py-1 ml-4 bg-white/5 hover:bg-white hover:text-black">
+              [ SWITCH TO EN ]
+            </button>
+          </li>
+        </ul>
+
+        <!-- Hamburger Button (Mobile) -->
+        <div class="md:hidden flex items-center gap-6">
+          <button id="lang-toggle-mobile" class="font-mono tracking-widest text-[10px] uppercase border border-white/20 px-2 py-1 z-[1002] bg-white/5">
+            EN
+          </button>
+          <button
+            id="btnMobileMenu"
+            class="flex flex-col justify-center gap-[6px] w-8 h-8 z-[1002]"
+          >
+            <span
+              class="block w-full h-px bg-white transition-transform duration-300 origin-center"
+            ></span>
+            <span
+              class="block w-full h-px bg-white transition-transform duration-300 origin-center"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Overlay Menu -->
+    <div
+      id="mobileMenuOverlay"
+      class="fixed inset-0 bg-[#050505] z-[999] hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300"
+    >
+      <ul class="flex flex-col gap-12 text-center">
         <li>
           <a
             href="#inicio"
-            class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] hover:text-white"
-            data-section="inicio"
+            class="mobile-link text-5xl font-black uppercase tracking-tighter hover:italic"
+            data-i18n="nav-inicio"
             >Início</a
           >
         </li>
         <li>
           <a
             href="#sobre"
-            class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] hover:text-white"
-            data-section="sobre"
+            class="mobile-link text-5xl font-black uppercase tracking-tighter hover:italic"
+            data-i18n="nav-sobre"
             >Sobre</a
           >
         </li>
         <li>
           <a
             href="#projetos"
-            class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] hover:text-white"
-            data-section="projetos"
+            class="mobile-link text-5xl font-black uppercase tracking-tighter hover:italic"
+            data-i18n="nav-projetos"
             >Projetos</a
           >
         </li>
         <li>
           <a
             href="#contatos"
-            class="menu-link relative text-[#a1a1a1] no-underline font-medium px-6 py-3 rounded-xl transition-all duration-[0.4s] text-[0.95rem] hover:text-white"
-            data-section="contatos"
+            class="mobile-link text-5xl font-black uppercase tracking-tighter hover:italic"
+            data-i18n="nav-contatos"
             >Contatos</a
           >
         </li>
       </ul>
-    </nav>
+    </div>
 
+    <!-- Hero -->
     <main
       id="inicio"
-      class="min-h-screen flex items-center justify-center p-12 relative"
-      style="
-        background:
-          radial-gradient(
-            ellipse at center top,
-            rgba(14, 165, 233, 0.1) 0%,
-            transparent 70%
-          ),
-          #0a0a0a;
-      "
+      class="min-h-screen flex items-center justify-center p-6 md:p-12 border-b border-white/20 pt-24"
     >
-      <div class="text-center fade-in-up max-w-[800px]">
-        <div class="mb-12 relative inline-block">
+      <div
+        class="fade-in-up w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+      >
+        <div class="md:col-span-8 flex flex-col justify-center">
+          <p
+            class="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/50 mb-6 border-l border-white/20 pl-4"
+            data-i18n="hero-role"
+          >
+            Desenvolvedor Full Stack
+          </p>
+          <h1
+            class="text-[15vw] md:text-[10vw] font-black uppercase tracking-tighter leading-[0.85] break-words"
+          >
+            Caio<br />Campos
+          </h1>
+        </div>
+        <div
+          class="md:col-span-4 flex justify-center md:justify-end w-full mt-8 md:mt-0"
+        >
           <img
             src="assets/img/ui/foto-de-perfil.jpg"
             alt="Caio Campos"
-            class="w-[220px] h-[220px] rounded-full object-cover border-[3px] border-sky-500/30 shadow-[0_20px_60px_rgba(14,165,233,0.2)] floating transition-all duration-[0.6s] hover:scale-105"
+            class="w-full max-w-[100vw] sm:max-w-[400px] aspect-[4/5] md:aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/20 p-2 bg-[#050505]"
           />
         </div>
-        <h1
-          class="text-6xl font-bold mb-6 gradient-text tracking-tight max-[768px]:text-5xl"
-        >
-          Caio Campos
-        </h1>
-        <p class="text-2xl text-[#a1a1a1] mb-8 font-light tracking-wider">
-          Full Stack Developer
-        </p>
       </div>
     </main>
 
-    <section
-      id="sobre"
-      class="py-32 opacity-0 translate-y-8 transition-all duration-[0.8s]"
-    >
-      <div class="max-w-[1200px] mx-auto px-12">
+    <!-- Sobre -->
+    <section id="sobre" class="border-b border-white/20">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
         <h2
-          class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm"
+          class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-16 pb-8 border-b border-white/20"
+          data-i18n="about-title"
         >
-          Sobre Mim
+          Sobre<br />Mim
         </h2>
 
-        <div class="max-w-[900px] mx-auto text-center">
-          <p
-            class="text-[1.3rem] text-[#a1a1a1] mb-16 leading-[1.8] font-light"
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+          <div class="md:col-span-5">
+            <p class="text-2xl md:text-3xl font-light leading-snug" data-i18n="about-desc">
+              Desenvolvedor Full Stack apaixonado por arquitetura e usabilidade.
+              Do protótipo à implantação, foco em criar fluxos digitais
+              memoráveis e seguros. Minha base em Engenharia de Software me
+              permite olhar além da sintaxe, focando em padrões de projeto e
+              performance que garantem a escalabilidade de qualquer aplicação.
+              Transformo código em valor, com foco total em boas práticas e
+              segurança.
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/20 border border-white/20"
           >
-            Desenvolvedor Full Stack apaixonado por arquitetura e usabilidade.
-            Do protótipo à implantação, foco em criar fluxos digitais memoráveis
-            e seguros. Minha base em Engenharia de Software me permite olhar
-            além da sintaxe, focando em padrões de projeto e performance que
-            garantem a escalabilidade de qualquer aplicação. Transformo código
-            em valor, com foco total em boas práticas e segurança.
-          </p>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16 text-left">
+            <!-- Skill 1 -->
             <div
-              class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] backdrop-blur-[10px] hover:border-sky-500/30 hover:bg-white/5"
+              class="skill-item bg-[#050505] p-10 group hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold">
-                Hard Skills: Core
+              <h3
+                class="font-mono text-xs uppercase tracking-widest text-white/50 group-hover:text-black/50 mb-8 pb-4 border-b border-white/20 group-hover:border-black/20"
+                data-i18n="skill1-title"
+              >
+                01. Core
               </h3>
-              <ul class="text-[#a1a1a1] space-y-3 font-light">
-                <li>
-                  <span class="text-sky-500">▹</span> React / Next.js /
-                  TypeScript
-                </li>
-                <li><span class="text-sky-500">▹</span> Node.js & Express</li>
-                <li>
-                  <span class="text-sky-500">▹</span> Tailwind CSS & Shadcn UI
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Mobile-first & Responsive
-                  Design
-                </li>
+              <ul class="space-y-4 text-xl font-light">
+                <li>React / Next.js / TypeScript</li>
+                <li>Node.js & Express</li>
+                <li>Tailwind CSS & Shadcn UI</li>
+                <li data-i18n="skill1-item4">Mobile-first & Responsive Design</li>
               </ul>
             </div>
 
+            <!-- Skill 2 -->
             <div
-              class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] backdrop-blur-[10px] hover:border-sky-500/30 hover:bg-white/5"
+              class="skill-item bg-[#050505] p-10 group hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold">
-                Backend & Enterprise
+              <h3
+                class="font-mono text-xs uppercase tracking-widest text-white/50 group-hover:text-black/50 mb-8 pb-4 border-b border-white/20 group-hover:border-black/20"
+                data-i18n="skill2-title"
+              >
+                02. Backend & Enterprise
               </h3>
-              <ul class="text-[#a1a1a1] space-y-3 font-light">
-                <li><span class="text-sky-500">▹</span> Java & Spring Boot</li>
-                <li>
-                  <span class="text-sky-500">▹</span> Spring Security & JWT
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> SQL (Postgres, MySQL) &
-                  JPA
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> APIs RESTful &
-                  Microserviços
-                </li>
+              <ul class="space-y-4 text-xl font-light">
+                <li>Java & Spring Boot</li>
+                <li>Spring Security & JWT</li>
+                <li>SQL (Postgres, MySQL) & JPA</li>
+                <li data-i18n="skill2-item4">APIs RESTful & Microserviços</li>
               </ul>
             </div>
 
+            <!-- Skill 3 -->
             <div
-              class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] backdrop-blur-[10px] hover:border-sky-500/30 hover:bg-white/5"
+              class="skill-item bg-[#050505] p-10 group hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold">
-                Arquitetura & Segurança
+              <h3
+                class="font-mono text-xs uppercase tracking-widest text-white/50 group-hover:text-black/50 mb-8 pb-4 border-b border-white/20 group-hover:border-black/20"
+                data-i18n="skill3-title"
+              >
+                03. Arquitetura & Segurança
               </h3>
-              <ul class="text-[#a1a1a1] space-y-3 font-light">
-                <li>
-                  <span class="text-sky-500">▹</span> Clean Code, SOLID &
-                  Patterns
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Testes (Jest, JUnit,
-                  Testing Library)
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Docker, CI/CD & Vercel/AWS
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> OWASP & Criptografia
-                </li>
+              <ul class="space-y-4 text-xl font-light">
+                <li data-i18n="skill3-item1">Clean Code, SOLID & Patterns</li>
+                <li>Testes (Jest, JUnit, Testing Library)</li>
+                <li>Docker, CI/CD & Vercel/AWS</li>
+                <li data-i18n="skill3-item4">OWASP & Criptografia</li>
               </ul>
             </div>
 
+            <!-- Skill 4 -->
             <div
-              class="skill-item relative bg-white/[0.02] p-10 rounded-[20px] border border-white/[0.08] transition-all duration-[0.6s] backdrop-blur-[10px] hover:border-sky-500/30 hover:bg-white/5"
+              class="skill-item bg-[#050505] p-10 group hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <h3 class="text-sky-500 mb-6 text-[1.3rem] font-semibold">
-                Mindset & Colaboração
+              <h3
+                class="font-mono text-xs uppercase tracking-widest text-white/50 group-hover:text-black/50 mb-8 pb-4 border-b border-white/20 group-hover:border-black/20"
+                data-i18n="skill4-title"
+              >
+                04. Mindset & Colaboração
               </h3>
-              <ul class="text-[#a1a1a1] space-y-3 font-light">
-                <li>
-                  <span class="text-sky-500">▹</span> Comunicação Eficaz (PT/EN)
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Product Thinking & UX
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Resolução de Problemas
-                  Complexos
-                </li>
-                <li>
-                  <span class="text-sky-500">▹</span> Adaptabilidade e
-                  Colaboração Ativa
-                </li>
+              <ul class="space-y-4 text-xl font-light">
+                <li data-i18n="skill4-item1">Comunicação Eficaz (PT/EN)</li>
+                <li>Product Thinking & UX</li>
+                <li data-i18n="skill4-item3">Resolução de Problemas Complexos</li>
+                <li data-i18n="skill4-item4">Adaptabilidade e Colaboração Ativa</li>
               </ul>
             </div>
           </div>
@@ -228,180 +273,541 @@
       </div>
     </section>
 
-    <section
-      id="projetos"
-      class="py-32 bg-[#111111] opacity-0 translate-y-8 transition-all duration-[0.8s]"
-    >
-      <div class="max-w-[1200px] mx-auto px-12">
+    <!-- Projetos -->
+    <section id="projetos" class="border-b border-white/20">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
         <h2
-          class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm"
+          class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-16 pb-8 border-b border-white/20"
+          data-i18n="projects-title"
         >
           Projetos
         </h2>
 
-        <div class="flex flex-col items-center gap-12">
-          <a
-            href="https://stocks-app-topaz.vercel.app/sign-in"
-            target="_blank"
-            class="block w-full max-w-[900px] bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.08] transition-all duration-[0.6s] hover:-translate-y-3 hover:border-sky-500/40 group"
+        <div class="flex flex-col border-t border-white/20">
+          <!-- Projeto 1 -->
+          <div
+            class="group border-b border-white/20 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
           >
-            <div class="aspect-video bg-[#0a0a0a] overflow-hidden">
-              <img
-                src="assets/img/projects/print-projeto-1.jpg"
-                alt="Signalist"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+            <div
+              class="md:col-span-8 order-2 md:order-1 overflow-hidden border border-white/20 p-2 bg-white/5"
+            >
+              <a
+                href="https://stocks-app-topaz.vercel.app/sign-in"
+                target="_blank"
+                class="block w-full aspect-video overflow-hidden"
+              >
+                <img
+                  src="assets/img/projects/print-projeto-1.jpg"
+                  alt="Signalist"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </a>
             </div>
-            <div class="p-10">
-              <h3 class="text-3xl font-semibold text-sky-500 mb-2">
+            <div
+              class="md:col-span-4 order-1 md:order-2 flex flex-col justify-center"
+            >
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4"
+              >
+                001 // FINTECH
+              </p>
+              <h3
+                class="text-5xl font-black uppercase tracking-tighter mb-6 group-hover:italic transition-all"
+              >
                 Signalist
               </h3>
-              <p class="text-[#a1a1a1] mb-6 font-light">
+              <p class="text-xl font-light mb-8 text-white/80" data-i18n="proj-signalist-desc">
                 Análise de investimentos com IA e dados em tempo real.
               </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs"
-                  >Next.js 14</span
-                ><span class="px-3 py-1 bg-white/10 rounded-full text-xs"
-                  >Inngest</span
-                ><span class="px-3 py-1 bg-white/10 rounded-full text-xs"
+              <div
+                class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-widest"
+              >
+                <span class="px-2 py-1 border border-white/20">Next.js 14</span>
+                <span class="px-2 py-1 border border-white/20">Inngest</span>
+                <span class="px-2 py-1 border border-white/20"
                   >Google Gemini</span
                 >
               </div>
             </div>
-          </a>
+          </div>
 
-          <a
-            href="https://fit-ai-portfolio.vercel.app/"
-            target="_blank"
-            class="block w-full max-w-[900px] bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.08] transition-all duration-[0.6s] hover:-translate-y-3 hover:border-sky-500/40 group"
+          <!-- Projeto 2 -->
+          <div
+            class="group border-b border-white/20 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
           >
-            <div class="aspect-video bg-[#0a0a0a] overflow-hidden">
-              <img
-                src="assets/img/projects/project-fitai.png"
-                alt="FitAI"
-                class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <div class="p-10">
-              <h3 class="text-3xl font-semibold text-sky-500 mb-2">FitAI</h3>
-              <p class="text-[#a1a1a1] mb-6 font-light">
+            <div
+              class="md:col-span-4 order-1 md:order-1 flex flex-col justify-center text-left md:text-right md:items-end"
+            >
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4"
+              >
+                002 // SAÚDE & IA
+              </p>
+              <h3
+                class="text-5xl font-black uppercase tracking-tighter mb-6 group-hover:italic transition-all"
+              >
+                FitAI
+              </h3>
+              <p class="text-xl font-light mb-8 text-white/80" data-i18n="proj-fitai-desc">
                 Ecossistema SaaS de saúde com personal trainer via IA.
               </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs"
-                  >TypeScript</span
-                ><span class="px-3 py-1 bg-white/10 rounded-full text-xs"
-                  >Next.js</span
-                ><span class="px-3 py-1 bg-white/10 rounded-full text-xs"
+              <div
+                class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-widest md:justify-end"
+              >
+                <span class="px-2 py-1 border border-white/20">TypeScript</span>
+                <span class="px-2 py-1 border border-white/20">Next.js</span>
+                <span class="px-2 py-1 border border-white/20"
                   >IA Generativa</span
                 >
               </div>
             </div>
-          </a>
-
-          <a
-            href="https://auratrade-web.vercel.app/"
-            target="_blank"
-            class="block w-full max-w-[900px] bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.08] transition-all duration-[0.6s] hover:-translate-y-3 hover:border-sky-500/40 group"
-          >
-            <div class="aspect-video bg-[#0a0a0a] overflow-hidden">
-              <img
-                src="assets/img/projects/auratrade.png"
-                alt="AuraTrade"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+            <div
+              class="md:col-span-8 order-2 md:order-2 overflow-hidden border border-white/20 p-2 bg-white/5"
+            >
+              <a
+                href="https://fit-ai-portfolio.vercel.app/"
+                target="_blank"
+                class="block w-full aspect-video overflow-hidden"
+              >
+                <img
+                  src="assets/img/projects/projeto-fit-ai.png"
+                  alt="FitAI"
+                  class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </a>
             </div>
-            <div class="p-10">
-              <h3 class="text-3xl font-semibold text-sky-500 mb-2">AuraTrade</h3>
-              <p class="text-[#a1a1a1] mb-6 font-light">
-                Plataforma Full Stack de alta performance para monitoramento e automação de trades, com integração profunda entre back-end Java e bots de mensageira.
+          </div>
+
+          <!-- Projeto 3 (Nology) -->
+          <div
+            class="group border-b border-white/20 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+          >
+            <div
+              class="md:col-span-8 order-2 md:order-1 overflow-hidden border border-white/20 p-2 bg-white/5"
+            >
+              <a
+                href="https://nology-cashback-caio.vercel.app/"
+                target="_blank"
+                class="block w-full aspect-video overflow-hidden"
+              >
+                <img
+                  src="assets/img/projects/nology.png"
+                  alt="Nology"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </a>
+            </div>
+            <div
+              class="md:col-span-4 order-1 md:order-2 flex flex-col justify-center"
+            >
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4"
+              >
+                003 // DASHBOARD & API
               </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Java</span>
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Spring Boot</span>
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Spring Security</span>
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">MongoDB</span>
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Next.js</span>
-                <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Telegram API</span>
+              <h3
+                class="text-5xl font-black uppercase tracking-tighter mb-6 group-hover:italic transition-all"
+              >
+                Nology
+              </h3>
+              <p class="text-xl font-light mb-8 text-white/80" data-i18n="proj-nology-desc">
+                Sistema Full Stack composto por API e Dashboard Web para cálculo de cashback e benefícios com persistência em nuvem.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-widest"
+              >
+                <span class="px-2 py-1 border border-white/20">PYTHON</span>
+                <span class="px-2 py-1 border border-white/20">FASTAPI</span>
+                <span class="px-2 py-1 border border-white/20">NEXT.JS</span>
+                <span class="px-2 py-1 border border-white/20">TYPESCRIPT</span>
+                <span class="px-2 py-1 border border-white/20">POSTGRESQL</span>
               </div>
             </div>
-          </a>
+          </div>
+
+          <!-- Projeto 4 (Bicho Legal) -->
+          <div
+            class="group border-b border-white/20 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+          >
+            <div
+              class="md:col-span-4 order-1 md:order-1 flex flex-col justify-center text-left md:text-right md:items-end"
+            >
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4"
+              >
+                004 // LANDING PAGE
+              </p>
+              <h3
+                class="text-5xl font-black uppercase tracking-tighter mb-6 group-hover:italic transition-all"
+              >
+                Bicho Legal
+              </h3>
+              <p class="text-xl font-light mb-8 text-white/80" data-i18n="proj-bicholegal-desc">
+                Landing page de alta performance com animações e integração direta de formulário via WhatsApp para conversão de clientes.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-widest md:justify-end"
+              >
+                <span class="px-2 py-1 border border-white/20">NEXT.JS</span>
+                <span class="px-2 py-1 border border-white/20">TYPESCRIPT</span>
+                <span class="px-2 py-1 border border-white/20">TAILWIND CSS</span>
+              </div>
+            </div>
+            <div
+              class="md:col-span-8 order-2 md:order-2 overflow-hidden border border-white/20 p-2 bg-white/5"
+            >
+              <a
+                href="https://bicho-legal-olaria.vercel.app/"
+                target="_blank"
+                class="block w-full aspect-video overflow-hidden"
+              >
+                <img
+                  src="assets/img/projects/landing-page-petshop.png"
+                  alt="Bicho Legal"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </a>
+            </div>
+          </div>
+
+          <!-- Projeto 5 -->
+          <div
+            class="group py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+          >
+            <div
+              class="md:col-span-8 order-2 md:order-1 overflow-hidden border border-white/20 p-2 bg-white/5"
+            >
+              <a
+                href="https://auratrade-web.vercel.app/"
+                target="_blank"
+                class="block w-full aspect-video overflow-hidden"
+              >
+                <img
+                  src="assets/img/projects/auratrade.png"
+                  alt="AuraTrade"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
+              </a>
+            </div>
+            <div
+              class="md:col-span-4 order-1 md:order-2 flex flex-col justify-center"
+            >
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-4"
+              >
+                005 // TRADING BOT
+              </p>
+              <h3
+                class="text-5xl font-black uppercase tracking-tighter mb-6 group-hover:italic transition-all"
+              >
+                AuraTrade
+              </h3>
+              <p class="text-xl font-light mb-8 text-white/80" data-i18n="proj-auratrade-desc">
+                Plataforma Full Stack de alta performance para monitoramento e
+                automação de trades, com integração profunda entre back-end Java
+                e bots de mensageira.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-widest"
+              >
+                <span class="px-2 py-1 border border-white/20">Java</span>
+                <span class="px-2 py-1 border border-white/20"
+                  >Spring Boot</span
+                >
+                <span class="px-2 py-1 border border-white/20"
+                  >Spring Security</span
+                >
+                <span class="px-2 py-1 border border-white/20">MongoDB</span>
+                <span class="px-2 py-1 border border-white/20">Next.js</span>
+                <span class="px-2 py-1 border border-white/20"
+                  >Telegram API</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section
-      id="contatos"
-      class="py-32 opacity-0 translate-y-8 transition-all duration-[0.8s]"
-    >
-      <div class="max-w-[1200px] mx-auto px-12">
+    <!-- Contatos -->
+    <section id="contatos">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-32">
         <h2
-          class="text-5xl font-bold text-center mb-16 relative tracking-tight after:content-[''] after:absolute after:bottom-[-15px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-0.5 after:gradient-bg after:rounded-sm"
+          class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-16 pb-8 border-b border-white/20"
+          data-i18n="contact-title"
         >
           Contatos
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-          <div>
-            <h3 class="text-3xl mb-6 font-semibold">Vamos conversar?</h3>
-            <p class="text-[#a1a1a1] mb-12 font-light">
-              Disponível para novos desafios e projetos escaláveis.
-            </p>
-            <div class="grid gap-4">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div class="flex flex-col justify-between">
+            <div>
+              <p class="text-3xl font-light mb-16" data-i18n="contact-desc">
+                Disponível para novos desafios e<br />projetos escaláveis.
+              </p>
+            </div>
+            <div class="flex flex-col border-t border-white/20">
               <a
                 href="https://www.linkedin.com/in/caio-ds-campos/"
                 target="_blank"
-                class="text-sky-500 hover:text-sky-400 transition-colors"
-                >LinkedIn →</a
+                class="text-4xl md:text-6xl font-black uppercase tracking-tighter py-8 border-b border-white/20 hover:italic hover:pl-8 transition-all duration-300 flex justify-between items-center group"
               >
+                LinkedIn
+                <span
+                  class="font-mono font-light text-2xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform"
+                  >↗</span
+                >
+              </a>
               <a
                 href="https://github.com/hayax0"
                 target="_blank"
-                class="text-sky-500 hover:text-sky-400 transition-colors"
-                >GitHub →</a
+                class="text-4xl md:text-6xl font-black uppercase tracking-tighter py-8 border-b border-white/20 hover:italic hover:pl-8 transition-all duration-300 flex justify-between items-center group"
               >
+                GitHub
+                <span
+                  class="font-mono font-light text-2xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform"
+                  >↗</span
+                >
+              </a>
               <a
                 href="https://wa.me/5521997411009"
                 target="_blank"
-                class="text-sky-500 hover:text-sky-400 transition-colors"
-                >WhatsApp →</a
+                class="text-4xl md:text-6xl font-black uppercase tracking-tighter py-8 border-b border-white/20 hover:italic hover:pl-8 transition-all duration-300 flex justify-between items-center group"
               >
+                WhatsApp
+                <span
+                  class="font-mono font-light text-2xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform"
+                  >↗</span
+                >
+              </a>
             </div>
           </div>
-          <form class="flex flex-col gap-6" id="formulario">
-            <input
-              type="text"
-              name="nome"
-              placeholder="Nome"
-              required
-              class="bg-white/5 border border-white/10 p-4 rounded-xl focus:border-sky-500 outline-none transition-all"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              class="bg-white/5 border border-white/10 p-4 rounded-xl focus:border-sky-500 outline-none transition-all"
-            />
-            <textarea
-              name="mensagem"
-              placeholder="Mensagem"
-              rows="4"
-              required
-              class="bg-white/5 border border-white/10 p-4 rounded-xl focus:border-sky-500 outline-none transition-all"
-            ></textarea>
-            <button
-              type="submit"
-              class="gradient-bg py-4 rounded-xl font-bold hover:shadow-[0_10px_30px_rgba(14,165,233,0.3)] transition-all"
+
+          <div
+            class="bg-[#050505] border border-white/20 p-8 md:p-12 relative overflow-hidden group"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"
+            ></div>
+            <h3
+              class="font-mono text-xs uppercase tracking-widest mb-12 text-white/50 border-b border-white/20 pb-4"
+              data-i18n="contact-msg-title"
             >
-              Enviar Mensagem
-            </button>
-          </form>
+              Mensagem Direta
+            </h3>
+            <form class="flex flex-col gap-8" id="formulario">
+              <div class="relative">
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="NOME"
+                  data-i18n-placeholder="contact-placeholder-name"
+                  required
+                  class="w-full bg-transparent border-b border-white/20 py-4 font-mono text-sm uppercase tracking-widest focus:border-white focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="relative">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL"
+                  data-i18n-placeholder="contact-placeholder-email"
+                  required
+                  class="w-full bg-transparent border-b border-white/20 py-4 font-mono text-sm uppercase tracking-widest focus:border-white focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="relative">
+                <textarea
+                  name="mensagem"
+                  placeholder="MENSAGEM"
+                  data-i18n-placeholder="contact-placeholder-message"
+                  rows="4"
+                  required
+                  class="w-full bg-transparent border-b border-white/20 py-4 font-mono text-sm uppercase tracking-widest focus:border-white focus:outline-none transition-colors resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="mt-8 bg-white text-black font-mono text-sm uppercase tracking-widest py-6 px-8 hover:bg-black hover:text-white hover:border hover:border-white transition-all font-bold border border-transparent"
+                data-i18n="contact-btn"
+              >
+                [ Enviar Mensagem ]
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer
+      class="border-t border-white/20 py-8 text-center font-mono text-[10px] uppercase tracking-widest text-white/30"
+    >
+      <p data-i18n="footer-text">© 2026 CAIO CAMPOS // FULL STACK DEVELOPER</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script>
+      // ==========================================
+      // I18N - INTERNATIONALIZATION
+      // ==========================================
+      const translations = {
+        pt: {
+          "nav-inicio": "Início",
+          "nav-sobre": "Sobre",
+          "nav-projetos": "Projetos",
+          "nav-contatos": "Contatos",
+          "hero-role": "Desenvolvedor Full Stack",
+          "about-title": "Sobre<br />Mim",
+          "about-desc": "Desenvolvedor Full Stack apaixonado por arquitetura e usabilidade. Do protótipo à implantação, foco em criar fluxos digitais memoráveis e seguros. Minha base em Engenharia de Software me permite olhar além da sintaxe, focando em padrões de projeto e performance que garantem a escalabilidade de qualquer aplicação. Transformo código em valor, com foco total em boas práticas e segurança.",
+          "skill1-title": "01. Core",
+          "skill1-item4": "Mobile-first & Responsive Design",
+          "skill2-title": "02. Backend & Enterprise",
+          "skill2-item4": "APIs RESTful & Microserviços",
+          "skill3-title": "03. Arquitetura & Segurança",
+          "skill3-item1": "Clean Code, SOLID & Patterns",
+          "skill3-item4": "OWASP & Criptografia",
+          "skill4-title": "04. Mindset & Colaboração",
+          "skill4-item1": "Comunicação Eficaz (PT/EN)",
+          "skill4-item3": "Resolução de Problemas Complexos",
+          "skill4-item4": "Adaptabilidade e Colaboração Ativa",
+          "projects-title": "Projetos",
+          "proj-signalist-desc": "Análise de investimentos com IA e dados em tempo real.",
+          "proj-fitai-desc": "Ecossistema SaaS de saúde com personal trainer via IA.",
+          "proj-nology-desc": "Sistema Full Stack composto por API e Dashboard Web para cálculo de cashback e benefícios com persistência em nuvem.",
+          "proj-bicholegal-desc": "Landing page de alta performance com animações e integração direta de formulário via WhatsApp para conversão de clientes.",
+          "proj-auratrade-desc": "Plataforma Full Stack de alta performance para monitoramento e automação de trades, com integração profunda entre back-end Java e bots de mensageira.",
+          "contact-title": "Contatos",
+          "contact-desc": "Disponível para novos desafios e<br />projetos escaláveis.",
+          "contact-msg-title": "Mensagem Direta",
+          "contact-placeholder-name": "NOME",
+          "contact-placeholder-email": "EMAIL",
+          "contact-placeholder-message": "MENSAGEM",
+          "contact-btn": "[ Enviar Mensagem ]",
+          "footer-text": "© 2026 CAIO CAMPOS // FULL STACK DEVELOPER"
+        },
+        en: {
+          "nav-inicio": "Home",
+          "nav-sobre": "About",
+          "nav-projetos": "Work",
+          "nav-contatos": "Contact",
+          "hero-role": "Full Stack Developer",
+          "about-title": "About<br />Me",
+          "about-desc": "Full Stack Developer passionate about architecture and usability. From prototyping to deployment, I focus on engineering memorable, enterprise-grade digital flows. My background in Software Engineering empowers me to look beyond syntax, prioritizing design patterns and performance to ensure robust scalability. I translate code into tangible business value with an unyielding commitment to security and best practices.",
+          "skill1-title": "01. Core Engine",
+          "skill1-item4": "Mobile-first & Responsive Design",
+          "skill2-title": "02. Backend & Enterprise",
+          "skill2-item4": "RESTful APIs & Microservices",
+          "skill3-title": "03. Architecture & Security",
+          "skill3-item1": "Clean Code, SOLID & Patterns",
+          "skill3-item4": "OWASP & Cryptography",
+          "skill4-title": "04. Mindset & Collaboration",
+          "skill4-item1": "Effective Communication (PT/EN)",
+          "skill4-item3": "Complex Problem Solving",
+          "skill4-item4": "Adaptability & Active Collaboration",
+          "projects-title": "Selected Work",
+          "proj-signalist-desc": "AI-powered investment analysis with real-time market data.",
+          "proj-fitai-desc": "SaaS health ecosystem featuring an AI-driven personal trainer.",
+          "proj-nology-desc": "Full Stack system featuring an API and Web Dashboard for cashback and benefits calculation with cloud persistence.",
+          "proj-bicholegal-desc": "High-performance landing page featuring fluid animations and direct WhatsApp form integration for lead conversion.",
+          "proj-auratrade-desc": "High-performance Full Stack platform for trade monitoring and automation, featuring deep integration between a Java backend and messaging bots.",
+          "contact-title": "Contact",
+          "contact-desc": "Available for new challenges and<br />scalable, high-impact projects.",
+          "contact-msg-title": "Direct Message",
+          "contact-placeholder-name": "NAME",
+          "contact-placeholder-email": "EMAIL",
+          "contact-placeholder-message": "MESSAGE",
+          "contact-btn": "[ Send Message ]",
+          "footer-text": "© 2026 CAIO CAMPOS // FULL STACK DEVELOPER"
+        }
+      };
+
+      let currentLang = 'pt';
+      const langToggleDesktop = document.getElementById('lang-toggle-desktop');
+      const langToggleMobile = document.getElementById('lang-toggle-mobile');
+
+      function updateLanguage(lang) {
+        currentLang = lang;
+        const dict = translations[lang];
+
+        // Atualiza textos
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.innerHTML = dict[key];
+          }
+        });
+
+        // Atualiza placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) {
+            el.placeholder = dict[key];
+          }
+        });
+
+        // Atualiza UI dos botões
+        const displayLang = lang === 'pt' ? 'EN' : 'PT';
+        if (langToggleDesktop) langToggleDesktop.innerHTML = `[ SWITCH TO ${displayLang} ]`;
+        if (langToggleMobile) langToggleMobile.innerHTML = `${displayLang}`;
+      }
+
+      function handleLangToggle() {
+        const nextLang = currentLang === 'pt' ? 'en' : 'pt';
+        updateLanguage(nextLang);
+      }
+
+      if (langToggleDesktop) langToggleDesktop.addEventListener('click', handleLangToggle);
+      if (langToggleMobile) langToggleMobile.addEventListener('click', handleLangToggle);
+
+      // ==========================================
+      // MENU MOBILE (LUXURY BRUTALIST TOGGLE)
+      // ==========================================
+      const btnMobileMenu = document.getElementById('btnMobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      const body = document.body;
+
+      let isMenuOpen = false;
+
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+          mobileMenuOverlay.classList.remove('hidden');
+          mobileMenuOverlay.classList.add('flex');
+          setTimeout(() => {
+            mobileMenuOverlay.classList.remove('opacity-0');
+            mobileMenuOverlay.classList.add('opacity-100');
+          }, 10);
+          body.style.overflow = 'hidden'; 
+          
+          btnMobileMenu.children[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          btnMobileMenu.children[1].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+          mobileMenuOverlay.classList.remove('opacity-100');
+          mobileMenuOverlay.classList.add('opacity-0');
+          setTimeout(() => {
+            mobileMenuOverlay.classList.add('hidden');
+            mobileMenuOverlay.classList.remove('flex');
+          }, 300);
+          body.style.overflow = ''; 
+          
+          btnMobileMenu.children[0].style.transform = 'none';
+          btnMobileMenu.children[1].style.transform = 'none';
+        }
+      }
+
+      if(btnMobileMenu) {
+        btnMobileMenu.addEventListener('click', toggleMenu);
+      }
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (isMenuOpen) toggleMenu();
+        });
+      });
+    </script>
   </body>
 </html>
