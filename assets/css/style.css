@@ -78,3 +78,22 @@
 .skill-item:hover::before {
   transform: scaleX(1);
 }
+
+/* ==========================================
+   ANIMAÇÕES: TYPEWRITER & SCROLL REVEAL
+   ========================================== */
+
+
+/* 2. Scroll Reveal (Fade-in + Slide-up) */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
